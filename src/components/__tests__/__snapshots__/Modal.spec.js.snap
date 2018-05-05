@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Modal renders Modal 1`] = `
+<styled.div
+  onClick={[Function]}
+>
+  <styled.div
+    onClick={[Function]}
+  >
+    <styled.header>
+      Edit
+    </styled.header>
+    <styled.main>
+      <styled.div>
+        <label
+          htmlFor="name"
+        >
+          Name
+        </label>
+        <input
+          name="name"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </styled.div>
+      <styled.div
+        width="30"
+      >
+        <label
+          htmlFor="port"
+        >
+          Port
+        </label>
+        <input
+          name="port"
+          onChange={[Function]}
+          type="number"
+          value=""
+        />
+      </styled.div>
+      <styled.div>
+        <label
+          htmlFor="protocol"
+        >
+          Protocol
+        </label>
+        <styled.label>
+          <input
+            checked={false}
+            name="protocol"
+            onChange={[Function]}
+            type="radio"
+            value="HTTP"
+          />
+          HTTP
+        </styled.label>
+        <styled.label>
+          <input
+            checked={false}
+            name="protocol"
+            onChange={[Function]}
+            type="radio"
+            value="HTTPS"
+          />
+          HTTPS
+        </styled.label>
+      </styled.div>
+    </styled.main>
+    <styled.footer>
+      <styled.button
+        onClick={[Function]}
+        primary={true}
+      >
+        Save
+      </styled.button>
+      <styled.button
+        onClick={[Function]}
+      >
+        Cancel
+      </styled.button>
+    </styled.footer>
+  </styled.div>
+</styled.div>
+`;

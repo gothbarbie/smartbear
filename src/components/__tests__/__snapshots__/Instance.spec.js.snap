@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`components/Instance renders Instance 1`] = `
+<styled.article
+  onClick={[Function]}
+>
+  <header />
+  <styled.div>
+    <styled.i
+      className="fas fa-stop"
+    />
+  </styled.div>
+  <div />
+  <div>
+    Port: 
+  </div>
+  <div>
+    Protocol: 
+  </div>
+</styled.article>
+`;
