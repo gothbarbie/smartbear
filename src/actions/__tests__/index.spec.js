@@ -88,8 +88,6 @@ describe('actions/index', () => {
   describe('#save', () => {
     axios.put.mockImplementationOnce(() => Promise.resolve())
 
-    store = mockStore()
-
     it('saves new data', async () => {
       try {
         await store.dispatch(
