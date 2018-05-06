@@ -88,7 +88,7 @@ type State = {
 type Props = {
   closeModal: Function,
   data: Object,
-  modal: { id: ?number },
+  modal: { id: string },
   save: Function,
 }
 
