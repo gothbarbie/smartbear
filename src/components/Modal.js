@@ -86,9 +86,9 @@ type State = {
 }
 
 type Props = {
-  modal: { id: ?number },
-  data: Object,
   closeModal: Function,
+  data: Object,
+  modal: { id: ?number },
   save: Function,
 }
 
@@ -100,24 +100,26 @@ export class Modal extends Component<Props, State> {
       port: '',
       protocol: '',
     }
+    this.fetchData(props)
+  }
+
+  fetchData (props: Props) {
+    const data = props.data.find(
+      item =>
+        item.virtualizationID === props.modal.id
+    )
+
+    if (data) {
+      this.setState({
+        name: data.name,
+        port: data.port,
+        protocol: data.protocol,
+      })
+    }
   }
 
   componentWillReceiveProps (nextProps: Props) {
-    if (nextProps.modal) {
-      const data = nextProps.data.find(
-        item =>
-          item.virtualizationID === nextProps.modal.hasOwnProperty('id') &&
-          nextProps.modal.id
-      )
-
-      if (data) {
-        this.setState({
-          name: data.name,
-          port: data.port,
-          protocol: data.protocol,
-        })
-      }
-    }
+    this.fetchData(nextProps)
   }
 
   onChange = e => {

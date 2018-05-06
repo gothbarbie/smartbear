@@ -1,3 +1,5 @@
+// @flow
+
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getData, openModal } from './actions'
@@ -42,8 +44,14 @@ const Section = styled.section`
   padding: 3rem 2.5rem;
 `
 
-class App extends Component {
-  componentWillMount() {
+type Props = {
+  data: Object,
+  getData: Function,
+  openModal: Function,
+}
+
+class App extends Component<Props> {
+  componentWillMount () {
     this.props.getData()
   }
 
@@ -51,8 +59,8 @@ class App extends Component {
     this.props.openModal(id)
   }
 
-  render() {
-    const { data, modal } = this.props
+  render () {
+    const { data } = this.props
     return (
       <div>
         <Wrapper>
@@ -77,10 +85,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ data, modal }) => {
+const mapStateToProps = ({ data }) => {
   return {
     data,
-    modal,
   }
 }
 

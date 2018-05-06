@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { FETCH_DATA, OPEN_MODAL, CLOSE_MODAL, UPDATE_DATA } from './types'
+import { FETCH_DATA, OPEN_MODAL, CLOSE_MODAL, UPDATE_DATA, OPEN_MENU, CLOSE_MENU } from './types'
 
 const API_URL = 'http://localhost:8090/sv/v1/virtualizations'
 
@@ -44,5 +44,18 @@ export const openModal = id => dispatch => {
 export const closeModal = () => dispatch => {
   dispatch({
     type: CLOSE_MODAL,
+  })
+}
+
+export const openMenu = id => dispatch => {
+  dispatch({
+    type: OPEN_MENU,
+    payload: id,
+  })
+}
+
+export const closeMenu = () => dispatch => {
+  dispatch({
+    type: CLOSE_MENU,
   })
 }

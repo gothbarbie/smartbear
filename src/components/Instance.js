@@ -1,7 +1,10 @@
 // @flow
 
-import React, { Component } from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
+
+import { openMenu, closeMenu } from '../actions'
 
 const Article = styled.article`
   background: ${({ running }) => (running ? '#fff' : '##F2F2F2')};
@@ -49,56 +52,64 @@ const MenuItem = styled.li`
 `
 
 type Props = {
-  apiType: string, 
-  name: string, 
+  apiType: string,
+  closeMenu: Function,
+  menu: { id: number },
+  name: string,
+  openMenu: Function,
   openModal: Function,
-  port: number, 
+  port: number,
   protocol: string,
-  running: boolean, 
+  running: boolean,
   virtualizationID: number,
 }
-
-type State = {
-  menuOpen: boolean,
-}
-
 
 export class Instance extends Component<Props, State> {
   constructor (props) {
     super(props)
-    this.state = {
-      menuOpen: false,
-    }
   }
 
   renderMenu () {
-    const { virtualizationID, openModal } = this.props
-    
-    return this.state.menuOpen && (
-      <Menu>
-        <MenuItem onClick={() => openModal(virtualizationID)}>
-          Edit
-        </MenuItem>
-        <MenuItem onClick={() => console.log('redeploy')}>
-          Redeploy
-        </MenuItem>
-      </Menu>
+    const { 
+      closeMenu,
+      menu,
+      openModal, 
+      virtualizationID, 
+    } = this.props
+
+    return (
+      menu.id === virtualizationID && (
+        <Menu>
+          <MenuItem onClick={(e) => {
+            e.stopPropagation()
+            closeMenu()
+            openModal(virtualizationID)}
+          }>Edit</MenuItem>
+          <MenuItem onClick={() => console.log('redeploy')}>Redeploy</MenuItem>
+        </Menu>
+      )
     )
   }
 
-  openMenu = () => {
-    this.setState({
-      menuOpen: !this.state.menuOpen,
-    })
-  }
-
   render () {
-    const { running, name, apiType, port, protocol } = this.props
-    
+    const {
+      apiType,
+      closeMenu,
+      name,
+      openMenu,
+      port,
+      protocol,
+      running,
+      virtualizationID,
+    } = this.props
+
     return (
-      <Article 
-        onClick={this.openMenu}
-        running={running} 
+      <Article
+        onClick={() => {
+          closeMenu()
+          openMenu(virtualizationID)
+        }}
+        running={running}
       >
         <header>{name}</header>
         <RunningStatus>
@@ -117,4 +128,15 @@ export class Instance extends Component<Props, State> {
   }
 }
 
-export default Instance
+export const mapStateToProps = ({ menu }) => {
+  return {
+    menu,
+  }
+}
+
+export const mapDispatchToProps = {
+  openMenu,
+  closeMenu,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Instance)

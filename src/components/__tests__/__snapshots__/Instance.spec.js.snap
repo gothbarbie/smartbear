@@ -3,19 +3,26 @@
 exports[`components/Instance renders Instance 1`] = `
 <styled.article
   onClick={[Function]}
+  running={true}
 >
-  <header />
+  <header>
+    Movie Collection
+  </header>
   <styled.div>
     <styled.i
-      className="fas fa-stop"
+      className="fas fa-play"
     />
   </styled.div>
-  <div />
+  <div>
+    GraphQL
+  </div>
   <div>
     Port: 
+    8080
   </div>
   <div>
     Protocol: 
+    http
   </div>
 </styled.article>
 `;
