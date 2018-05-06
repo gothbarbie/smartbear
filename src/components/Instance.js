@@ -49,6 +49,10 @@ const Menu = styled.ul`
 const MenuItem = styled.li`
   margin: 0;
   line-height: 1.5rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
 `
 
 type Props = {
@@ -66,47 +70,42 @@ type Props = {
 
 export class Instance extends Component<Props, State> {
   renderMenu () {
-    const { 
-      closeMenu,
-      menu,
-      openModal, 
-      virtualizationID, 
-    } = this.props
+    const { closeMenu, menu, openModal, virtualizationID } = this.props
 
     return (
       menu.id === virtualizationID && (
         <Menu>
-          <MenuItem onClick={(e) => {
-            e.stopPropagation()
-            closeMenu()
-            openModal(virtualizationID)}
-          }>Edit</MenuItem>
+          <MenuItem
+            onClick={e => {
+              e.stopPropagation()
+              closeMenu()
+              openModal(virtualizationID)
+            }}
+          >
+            Edit
+          </MenuItem>
           <MenuItem onClick={() => console.log('redeploy')}>Redeploy</MenuItem>
         </Menu>
       )
     )
   }
 
+  handleMenu = () => {
+    const { closeMenu, openMenu, menu, virtualizationID } = this.props
+    menu.id === virtualizationID ? closeMenu() : openMenu(virtualizationID)
+  }
+
   render () {
     const {
       apiType,
-      closeMenu,
       name,
-      openMenu,
       port,
       protocol,
       running,
-      virtualizationID,
     } = this.props
 
     return (
-      <Article
-        onClick={() => {
-          closeMenu()
-          openMenu(virtualizationID)
-        }}
-        running={running}
-      >
+      <Article onClick={this.handleMenu} running={running}>
         <header>{name}</header>
         <RunningStatus>
           {running ? (
