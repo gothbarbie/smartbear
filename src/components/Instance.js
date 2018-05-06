@@ -65,10 +65,6 @@ type Props = {
 }
 
 export class Instance extends Component<Props, State> {
-  constructor (props) {
-    super(props)
-  }
-
   renderMenu () {
     const { 
       closeMenu,
