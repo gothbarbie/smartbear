@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`actions/index #save saves new data 1`] = `
+Array [
+  Object {
+    "payload": Object {
+      "id": 1,
+      "name": "Pet Store",
+      "port": "8082",
+      "protocol": "HTTP",
+    },
+    "type": "data/UPDATE",
+  },
+]
+`;
