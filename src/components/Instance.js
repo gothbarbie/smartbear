@@ -58,17 +58,17 @@ const MenuItem = styled.li`
 type Props = {
   apiType: string,
   closeMenu: Function,
-  menu: { id: number },
+  menu: { id: string },
   name: string,
   openMenu: Function,
   openModal: Function,
-  port: number,
+  port: string,
   protocol: string,
   running: boolean,
-  virtualizationID: number,
+  virtualizationID: string,
 }
 
-export class Instance extends Component<Props, State> {
+export class Instance extends Component<Props> {
   renderMenu () {
     const { closeMenu, menu, openModal, virtualizationID } = this.props
 
@@ -96,13 +96,7 @@ export class Instance extends Component<Props, State> {
   }
 
   render () {
-    const {
-      apiType,
-      name,
-      port,
-      protocol,
-      running,
-    } = this.props
+    const { apiType, name, port, protocol, running } = this.props
 
     return (
       <Article onClick={this.handleMenu} running={running}>
@@ -123,7 +117,7 @@ export class Instance extends Component<Props, State> {
   }
 }
 
-export const mapStateToProps = ({ menu }) => {
+export const mapStateToProps = ({ menu }: { menu: { id: string } }) => {
   return {
     menu,
   }
@@ -134,4 +128,6 @@ export const mapDispatchToProps = {
   closeMenu,
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Instance)
+export default connect((mapStateToProps), mapDispatchToProps)(
+  Instance
+)

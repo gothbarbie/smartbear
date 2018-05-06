@@ -81,7 +81,7 @@ const Footer = styled.footer`
 
 type State = {
   name: string,
-  port: number,
+  port: string,
   protocol: string,
 }
 
@@ -93,20 +93,18 @@ type Props = {
 }
 
 export class Modal extends Component<Props, State> {
-  constructor (props) {
+  constructor (props: Props) {
     super(props)
     this.state = {
       name: '',
       port: '',
       protocol: '',
     }
-    this.fetchData(props)
   }
 
   fetchData (props: Props) {
     const data = props.data.find(
-      item =>
-        item.virtualizationID === props.modal.id
+      item => item.virtualizationID === props.modal.id
     )
 
     if (data) {
@@ -118,12 +116,16 @@ export class Modal extends Component<Props, State> {
     }
   }
 
+  componentDidMount () {
+    this.fetchData(this.props)
+  }
+
   componentWillReceiveProps (nextProps: Props) {
     this.fetchData(nextProps)
   }
 
-  onChange = e => {
-    const { name, value } = e.target
+  onChange = (e: SyntheticInputEvent<*>) => {
+    const { name, value } = e.currentTarget
     this.setState({
       [name]: value,
     })

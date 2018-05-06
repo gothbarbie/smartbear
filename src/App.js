@@ -47,6 +47,7 @@ const Section = styled.section`
 type Props = {
   data: Object,
   getData: Function,
+  modal: Object,
   openModal: Function,
 }
 
@@ -57,6 +58,12 @@ class App extends Component<Props> {
 
   openModal = id => {
     this.props.openModal(id)
+  }
+
+  renderModal () {
+    if (this.props.modal.id) {
+      return <Modal />
+    }
   }
 
   render () {
@@ -79,15 +86,16 @@ class App extends Component<Props> {
             })}
           </Section>
         </Wrapper>
-        <Modal />
+        {this.renderModal()}
       </div>
     )
   }
 }
 
-const mapStateToProps = ({ data }) => {
+const mapStateToProps = ({ data, modal }) => {
   return {
     data,
+    modal,
   }
 }
 
