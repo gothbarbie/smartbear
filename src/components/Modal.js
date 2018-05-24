@@ -120,7 +120,7 @@ export class Modal extends Component<Props, State> {
     this.fetchData(this.props)
   }
 
-  componentWillReceiveProps (nextProps: Props) {
+  getDerivedStateFromProps (nextProps: Props) {
     this.fetchData(nextProps)
   }
 
