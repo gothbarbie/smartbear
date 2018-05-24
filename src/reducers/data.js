@@ -7,12 +7,11 @@ export default (state = [], action) => {
     case UPDATE_DATA:
       return state.map(item => {
         if (item.virtualizationID === action.payload.id) {
-          const newData = { 
-            apiType: action.payload.apiType,
+          const newData = {
             virtualizationID: action.payload.id,
             name: action.payload.name,
             protocol: action.payload.protocol,
-            port: action.payload.port, 
+            port: action.payload.port,
             running: action.payload.running,
           }
           return { ...item, ...newData }

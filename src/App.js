@@ -52,7 +52,7 @@ type Props = {
 }
 
 class App extends Component<Props> {
-  componentWillMount () {
+  componentDidMount () {
     this.props.getData()
   }
 

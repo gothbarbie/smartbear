@@ -120,8 +120,8 @@ export class Modal extends Component<Props, State> {
     this.fetchData(this.props)
   }
 
-  getDerivedStateFromProps (nextProps: Props) {
-    this.fetchData(nextProps)
+  componentDidUpdate (prevProps: Props) {
+    if (prevProps !== this.props) this.fetchData(this.props)
   }
 
   onChange = (e: SyntheticInputEvent<*>) => {
